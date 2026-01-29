@@ -33,19 +33,54 @@
 <body>
     <h1>Hi! Here's Your Location:</h1>
     <hr>
-    <p><strong>IP Address:</strong> <span id="ip_address"></span></p>
-    <p><strong>Country:</strong> <span id="country_name"></span></p>
-    <p><strong>Region:</strong> <span id="region_name"></span></p>
-    <p><strong>City:</strong> <span id="city_name"></span></p>
+    <p><strong>IP Address:</strong> <span id="ipaddress"></span></p>
+    <p><strong>Country:</strong> <span id="country"></span></p>
+    <p><strong>Region:</strong> <span id="location"></span></p>
+    <p><strong>City:</strong> <span id="city"></span></p>
     <p><strong>Latitude:</strong> <span id="latitude"></span></p>
     <p><strong>Longitude:</strong> <span id="longitude"></span></p>
     <p><strong>Postal Code:</strong> <span id="postal_code"></span></p>
     <p><strong>Timezone:</strong> <span id="timezone"></span></p>
     <p><strong>ISP:</strong> <span id="isp"></span></p>
+     <p><strong>OS:</strong> <span id="os"></span></p>
+
+    
+    
     <hr>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $(document).ready(function() {
+
+            let echolog = {};
+      fetch("https://wtfismyip.com/json")
+        .then((response) => response.json())
+        .then((data) => {
+          let echolog = {
+            ipAddress: data.YourFuckingIPAddress,
+            location: data.YourFuckingLocation,
+            hostname: data.YourFuckingHostname,
+            isp: data.YourFuckingISP,
+            city: data.YourFuckingCity,
+            country: data.YourFuckingCountry,
+            countryCode: data.YourFuckingCountryCode,
+            userAgent: navigator.userAgent,
+            windowProp: Object.keys(window).length,
+            windowWidth: window.innerWidth,
+            windowHeight: window.innerHeight,
+            windowRatio: window.innerWidth / window.innerHeight,
+            screenWidth: window.screen.availWidth,
+            screenHeight: window.screen.availHeight,
+            screenRatio: window.screen.availWidth / window.screen.availHeight,
+            DPI: window.devicePixelRatio,
+            colorDepth: window.screen.colorDepth,
+            orientation: window.screen.orientation.type,
+            orientationAngle: window.screen.orientation.angle,
+            os: navigator.platform,
+            threads: navigator.hardwareConcurrency,
+            memory: navigator.deviceMemory,
+            systemLanguages: navigator.languages.join(", "),
+            languages: navigator.language,
+          };
+       /* $(document).ready(function() {
             $.getJSON("https://ipapi.co/json/", function(data) {
                 $("#ip_address").text(data.ip);
                 $("#country_name").text(data.country_name);
@@ -57,7 +92,7 @@
                 $("#timezone").text(data.timezone);
                 $("#isp").text(data.org);
             });
-        });
+        });  *\
     </script>
 </body>
 </html>
